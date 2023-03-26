@@ -2,12 +2,21 @@ package main
 
 import (
 	routes "JAA/routes"
-	"github.com/gin-gonic/gin"
+	"log"
 	"os"
+
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	port = os.Getenv("PORT")
+
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error loading the .env file")
+	}
+
+	port := os.Getenv("PORT")
 
 	if port == "" {
 		port = "8000"
